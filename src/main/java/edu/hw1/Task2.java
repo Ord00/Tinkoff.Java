@@ -15,10 +15,10 @@ public class Task2 {
     public static int countDigits(Integer num) {
         int result = 0;
         int x = Math.abs(num);
-        while (x > 0) {
+        do {
             ++result;
             x /= K;
-        }
+        } while (x > 0);
         return result;
     }
 
