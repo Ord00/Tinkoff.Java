@@ -30,7 +30,7 @@ public class CorrectionOfSymbol {
     public static String correctSymbol(Scanner in, char[] usedsymbols, int pos) {
         String symbol = in.nextLine();
         while (!checkSymbol(symbol, usedsymbols, pos)) {
-            System.out.print("\n> Write correct letter!\n");
+            System.out.print("\n> Write correct letter!");
             System.out.print("\n> Guess a letter:\n");
             System.out.print("< ");
             symbol = in.nextLine();

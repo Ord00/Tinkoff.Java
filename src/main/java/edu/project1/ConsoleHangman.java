@@ -44,7 +44,7 @@ public class ConsoleHangman {
                     }
                 }
                 if (isSym) {
-                    System.out.print("> Hit!\n");
+                    System.out.print("\n> Hit!\n");
                     System.out.print(N);
                     System.out.print(WORD + Arrays.toString(session.getUserAnswer()) + '\n');
                     System.out.print(N);
@@ -55,7 +55,7 @@ public class ConsoleHangman {
                 } else {
                     session.addAttempt();
                     System.out.print(
-                        "> Missed, mistake " + session.getAttempts() + " out of " + session.getMaxAttempts()
+                        "\n> Missed, mistake " + session.getAttempts() + " out of " + session.getMaxAttempts()
                             + ".\n");
                     System.out.print(N);
                     System.out.print(WORD + Arrays.toString(session.getUserAnswer()) + '\n');
@@ -75,5 +75,7 @@ public class ConsoleHangman {
     public static void main(String[] args) {
         ConsoleHangman consoleHangMan = new ConsoleHangman();
         consoleHangMan.game("obstacle");
+/*        ConsoleHangman consoleHangMan = new ConsoleHangman("h\ne\nv\ne\na\nn\nk\nx\nb");
+        consoleHangMan.game("obstacle");*/
     }
 }
