@@ -1,9 +1,10 @@
 package edu.project1;
 
+import java.util.Random;
 import java.util.Arrays;
 import org.jetbrains.annotations.NotNull;
-import java.util.Random;
 
+@SuppressWarnings("MagicNumber")
 interface Dictionary {
     @NotNull String randomWord();
 }
