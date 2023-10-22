@@ -61,7 +61,6 @@ public class ConsoleHangman {
                     System.out.print(WORD + Arrays.toString(session.getUserAnswer()) + '\n');
                     System.out.print(N);
                     if (session.getAttempts() == session.getMaxAttempts()) {
-                        System.out.print(N);
                         System.out.print("> You lost!\n");
                         isEnd = true;
                     }
@@ -75,7 +74,7 @@ public class ConsoleHangman {
     public static void main(String[] args) {
         ConsoleHangman consoleHangMan = new ConsoleHangman();
         consoleHangMan.game(Dictionary.randomWord());
- /*       ConsoleHangman consoleHangMan = new ConsoleHangman("h\ne\nv\ne\na\nn\nk\nx\nb");
+/*        ConsoleHangman consoleHangMan = new ConsoleHangman("h\ne\nv\ne\na\nn\nk\nx\nb");
         consoleHangMan.game("obstacle");*/
     }
 }
