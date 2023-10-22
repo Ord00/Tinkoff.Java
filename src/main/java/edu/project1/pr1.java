@@ -3,7 +3,10 @@ package edu.project1;
 import java.util.Arrays;
 import java.util.Scanner;
 
+@SuppressWarnings("RegexpSinglelineJava")
 class ConsoleHangman {
+    final static int TWENTYSIX = 26;
+    final static int FIVE = 5;
     private static Scanner scanner;
 
     public ConsoleHangman() {
@@ -16,11 +19,11 @@ class ConsoleHangman {
 
     public static void Game(String guessWord) {
         if (guessWord.length() > 1) {
-            Session session = new Session(guessWord, 5);
+            Session session = new Session(guessWord, FIVE);
             String symbol;
             boolean isEnd = false;
             boolean isSym;
-            char[] usedsymbols = new char[26];
+            char[] usedsymbols = new char[TWENTYSIX];
             int pos = 0;
             int len = session.getAnswerLength();
             while (!session.attemptsOverflow() && !isEnd) {
@@ -49,8 +52,8 @@ class ConsoleHangman {
                     } else {
                         session.addAttempt();
                         System.out.print(
-                            "> Missed, mistake " + session.getAttempts() + " out of " + session.getMaxAttempts() +
-                                ".\n");
+                            "> Missed, mistake " + session.getAttempts() + " out of " + session.getMaxAttempts()
+                                + ".\n");
                         System.out.print(">\n");
                         System.out.print("> The word: " + Arrays.toString(session.getUserAnswer()) + '\n');
                         System.out.print(">\n");

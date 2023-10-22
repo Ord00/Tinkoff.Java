@@ -14,7 +14,8 @@ class Session implements Dictionary {
     private final int maxAttempts;
     private int attempts;
 
-    public Session(String answer, int maxAttempts) {
+   final static int SIX = 6;
+    Session(String answer, int maxAttempts) {
         this.answer = answer;
         this.userAnswer = new char[answer.length()];
         Arrays.fill(userAnswer, '*');
@@ -24,7 +25,7 @@ class Session implements Dictionary {
 
     @NotNull public String randomWord() {
         Random random = new Random();
-        String result = switch (random.nextInt(6)) {
+        String result = switch (random.nextInt(SIX)) {
             case 0 -> "hello";
             case 1 -> "obstacle";
             case 2 -> "decision";

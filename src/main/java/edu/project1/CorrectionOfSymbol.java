@@ -2,6 +2,7 @@ package edu.project1;
 
 import java.util.Scanner;
 
+@SuppressWarnings("RegexpSinglelineJava")
 public class CorrectionOfSymbol {
     public static boolean isUsedSymbol(char symbol, char[] usedsymbols, int pos) {
         boolean result = false;
