@@ -1,6 +1,5 @@
 package edu.project1;
 
-import edu.hw1.Task7;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +18,7 @@ public class pr1Test {
         System.setOut(capture);
 
         ConsoleHangman ConsoleHangMan = new ConsoleHangman("h");
-        ConsoleHangMan.Game("h");
+        ConsoleHangMan.game("h");
 
         capture.flush();
         consoleOutput = outputStream.toString();
@@ -36,7 +35,7 @@ public class pr1Test {
         System.setOut(capture);
 
         ConsoleHangman ConsoleHangMan = new ConsoleHangman("h\ne\nv\ne\na\nn\nk\nx\nb");
-        ConsoleHangMan.Game("obstacle");
+        ConsoleHangMan.game("obstacle");
 
         capture.flush();
         consoleOutput = outputStream.toString();
@@ -53,7 +52,7 @@ public class pr1Test {
         System.setOut(capture);
 
         ConsoleHangman ConsoleHangMan = new ConsoleHangman("r\ne\nc\nt\na\nn\ng\nl\ne\nx\nm");
-        ConsoleHangMan.Game("obstacle");
+        ConsoleHangMan.game("obstacle");
 
         capture.flush();
         consoleOutput = outputStream.toString();
@@ -72,7 +71,7 @@ public class pr1Test {
         System.setOut(capture);
 
         ConsoleHangman ConsoleHangMan = new ConsoleHangman("r\ne\nc\nt\na\nn\ng\nl\ne\nx\nm");
-        ConsoleHangMan.Game("obstacle");
+        ConsoleHangMan.game("obstacle");
 
         capture.flush();
         consoleOutput = outputStream.toString();
@@ -92,7 +91,7 @@ public class pr1Test {
         System.setOut(capture);
 
         ConsoleHangman ConsoleHangMan = new ConsoleHangman("r\ne\ncngk\nt\na\nn\ng\nl\ne\nx\nm");
-        ConsoleHangMan.Game("obstacle");
+        ConsoleHangMan.game("obstacle");
 
         capture.flush();
         consoleOutput = outputStream.toString();

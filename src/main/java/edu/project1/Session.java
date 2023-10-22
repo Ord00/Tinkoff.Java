@@ -1,7 +1,7 @@
 package edu.project1;
 
-import org.jetbrains.annotations.NotNull;
 import java.util.Arrays;
+import org.jetbrains.annotations.NotNull;
 import java.util.Random;
 
 interface Dictionary {
@@ -14,7 +14,8 @@ class Session implements Dictionary {
     private final int maxAttempts;
     private int attempts;
 
-   final static int SIX = 6;
+    final static int SIX = 6;
+
     Session(String answer, int maxAttempts) {
         this.answer = answer;
         this.userAnswer = new char[answer.length()];

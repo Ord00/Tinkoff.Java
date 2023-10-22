@@ -3,21 +3,21 @@ package edu.project1;
 import java.util.Arrays;
 import java.util.Scanner;
 
-@SuppressWarnings("RegexpSinglelineJava")
+@SuppressWarnings("RegexpSinglelineJava, UncommentedMain")
 class ConsoleHangman {
     final static int TWENTYSIX = 26;
     final static int FIVE = 5;
     private static Scanner scanner;
 
-    public ConsoleHangman() {
+    ConsoleHangman() {
         scanner = new Scanner(System.in);
     }
 
-    public ConsoleHangman(String in) {
+    ConsoleHangman(String in) {
         scanner = new Scanner(in);
     }
 
-    public static void Game(String guessWord) {
+    public static void game(String guessWord) {
         if (guessWord.length() > 1) {
             Session session = new Session(guessWord, FIVE);
             String symbol;
@@ -73,7 +73,7 @@ class ConsoleHangman {
     }
 
     public static void main(String[] args) {
-        ConsoleHangman ConsoleHangMan = new ConsoleHangman("h\ne\nv\ne\na\nn");
-        ConsoleHangMan.Game("obstacle");
+        ConsoleHangman consoleHangMan = new ConsoleHangman("h\ne\nv\ne\na\nn");
+        consoleHangMan.game("obstacle");
     }
 }
