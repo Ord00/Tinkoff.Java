@@ -14,36 +14,6 @@ class ConsoleHangman {
         scanner = new Scanner(in);
     }
 
-    public static boolean isUsedSymbol(char symbol, char[] usedsymbols, int pos) {
-        boolean result = false;
-        for (int i = 0; i < pos; ++i) {
-            if (symbol == usedsymbols[i]) {
-                result = true;
-                break;
-            }
-        }
-        if (!result) {
-            usedsymbols[pos] = symbol;
-        }
-        return result;
-    }
-
-    public static boolean checkSymbol(String symbol, char[] usedsymbols, int pos) {
-        return symbol.equals("giveup") || symbol.length() == 1 && symbol.charAt(0) >= 'a'
-            && symbol.charAt(0) <= 'z' && !isUsedSymbol(symbol.charAt(0), usedsymbols, pos);
-    }
-
-    public static String correctSymbol(Scanner in, char[] usedsymbols, int pos) {
-        String symbol = in.nextLine();
-        while (!checkSymbol(symbol, usedsymbols, pos)) {
-            System.out.print("\n> Write correct letter!\n");
-            System.out.print("\n> Guess a letter:\n");
-            System.out.print("< ");
-            symbol = in.nextLine();
-        }
-        return symbol;
-    }
-
     public static void Game(String guessWord) {
         if (guessWord.length() > 1) {
             Session session = new Session(guessWord, 5);
@@ -57,7 +27,7 @@ class ConsoleHangman {
                 isSym = false;
                 System.out.print("> Guess a letter:\n");
                 System.out.print("< ");
-                symbol = correctSymbol(scanner, usedsymbols, pos);
+                symbol = CorrectionOfSymbol.correctSymbol(scanner, usedsymbols, pos);
                 System.out.print("\n");
                 if (!symbol.equals("giveup")) {
                     ++pos;
@@ -79,7 +49,8 @@ class ConsoleHangman {
                     } else {
                         session.addAttempt();
                         System.out.print(
-                            "> Missed, mistake " + session.getAttempts() + " out of " + session.getMaxAttempts() + ".\n");
+                            "> Missed, mistake " + session.getAttempts() + " out of " + session.getMaxAttempts() +
+                                ".\n");
                         System.out.print(">\n");
                         System.out.print("> The word: " + Arrays.toString(session.getUserAnswer()) + '\n');
                         System.out.print(">\n");
@@ -93,8 +64,7 @@ class ConsoleHangman {
                     isEnd = true;
                 }
             }
-        }
-        else {
+        } else {
             System.out.print("Загаданное слово имеет некорректную длину\n");
         }
     }
