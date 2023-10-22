@@ -1,182 +1,106 @@
 package edu.project1;
 
 import java.util.Arrays;
-import java.util.Random;
 import java.util.Scanner;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.jetbrains.annotations.NotNull;
-
-interface Dictionary {
-    @NotNull String randomWord();
-}
-
-class Session implements Dictionary {
-    private final String answer;
-    private final char[] userAnswer;
-    private final int maxAttempts;
-    private int attempts;
-
-    public Session(int maxAttempts) {
-        this.answer = randomWord();
-        this.userAnswer = new char[answer.length()];
-        Arrays.fill(userAnswer, '*');
-        this.maxAttempts = maxAttempts;
-        this.attempts = 0;
-    }
-
-    @NotNull public String randomWord() {
-        Random random = new Random();
-        String result = switch (random.nextInt(6)) {
-            case 0 -> "hello";
-            case 1 -> "obstacle";
-            case 2 -> "decision";
-            case 3 -> "elephant";
-            case 4 -> "majesty";
-            default -> "predicament";
-        };
-        return result;
-    }
-
-    boolean attemptsOverflow() {
-        return attempts >= maxAttempts;
-    }
-
-    void addAttempt() {
-        ++attempts;
-    }
-
-    int getAttempts() {
-        return attempts;
-    }
-
-    int getMaxAttempts() {
-        return maxAttempts;
-    }
-
-    char[] getUserAnswer() {
-        return userAnswer;
-    }
-
-    String getAnswer() {
-        return answer;
-    }
-
-    int getAnswerLength() {
-        return answer.length();
-    }
-
-    void setUserAnswer(char symbol, int i) {
-        userAnswer[i] = symbol;
-    }
-
-/*    @NotNull GuessResult guess(char guess);
-
-    @NotNull GuessResult giveUp();*/
-
-}
-
-/*sealed interface GuessResult {
-    char[] state();
-
-    int attempt();
-
-    int maxAttempts();
-
-    @NotNull String message();
-
-    record Defeat(char[] state, int attempt, int maxAttempts) implements GuessResult {
-    }
-
-    record Win(...) implements GuessResult {
-
-    }
-
-    record SuccessfulGuess(...) implements GuessResult {
-    }
-
-    record FailedGuess(...) implements GuessResult {
-    }
-}*/
 
 class ConsoleHangman {
-    private final static Logger LOGGER = LogManager.getLogger();
+    private static Scanner scanner;
+
+    public ConsoleHangman() {
+        scanner = new Scanner(System.in);
+    }
+
+    public ConsoleHangman(String in) {
+        scanner = new Scanner(in);
+    }
 
     public static boolean isUsedSymbol(char symbol, char[] usedsymbols, int pos) {
         boolean result = false;
-        for (int i = 0; i < pos && !result; ++i) {
+        for (int i = 0; i < pos; ++i) {
             if (symbol == usedsymbols[i]) {
                 result = true;
+                break;
             }
         }
-        if (!result)
+        if (!result) {
             usedsymbols[pos] = symbol;
+        }
         return result;
     }
+
     public static boolean checkSymbol(String symbol, char[] usedsymbols, int pos) {
-        return symbol.length() == 1 && symbol.charAt(0) >= 'a'
+        return symbol.equals("giveup") || symbol.length() == 1 && symbol.charAt(0) >= 'a'
             && symbol.charAt(0) <= 'z' && !isUsedSymbol(symbol.charAt(0), usedsymbols, pos);
     }
 
-    public static char correctSymbol(Scanner in, char[] usedsymbols, int pos) {
+    public static String correctSymbol(Scanner in, char[] usedsymbols, int pos) {
         String symbol = in.nextLine();
         while (!checkSymbol(symbol, usedsymbols, pos)) {
-            LOGGER.info("> Guess a letter:");
-            LOGGER.info("< ");
+            System.out.print("\n> Write correct letter!\n");
+            System.out.print("\n> Guess a letter:\n");
+            System.out.print("< ");
             symbol = in.nextLine();
         }
-        return symbol.charAt(0);
+        return symbol;
     }
 
-    public static void Game() {
-        Scanner in = new Scanner(System.in);
-        boolean isEnd = false;
-        boolean isSym;
-        Session session = new Session(5);
-        char symbol;
-        char[] usedsymbols = new char[26];
-        int pos = 0;
-        int len = session.getAnswerLength();
-        while (!session.attemptsOverflow() && !isEnd) {
-            isSym = false;
-            LOGGER.info("> Guess a letter:");
-            LOGGER.info("< ");
-            symbol = correctSymbol(in, usedsymbols, pos);
-            ++pos;
-            for (int i = 0; i < len; ++i) {
-                if (symbol == session.getAnswer().charAt(i)) {
-                    session.setUserAnswer(symbol, i);
-                    isSym = true;
-                }
-            }
-            if (isSym) {
-                LOGGER.info("> Hit!");
-                LOGGER.info(">");
-                LOGGER.info("The word: " + Arrays.toString(session.getUserAnswer()));
-                if (Arrays.equals(session.getAnswer().toCharArray(), session.getUserAnswer())) {
-                    LOGGER.info(">");
-                    LOGGER.info("> You won!");
-                    isEnd = true;
-                }
-            } else {
-                session.addAttempt();
-                LOGGER.info("> Missed, mistake " + session.getAttempts() + " out of " + session.getMaxAttempts() + ".");
-                if (session.getAttempts() == session.getMaxAttempts()) {
-                    LOGGER.info(">");
-                    LOGGER.info("> You lost!");
+    public static void Game(String guessWord) {
+        if (guessWord.length() > 1) {
+            Session session = new Session(guessWord, 5);
+            String symbol;
+            boolean isEnd = false;
+            boolean isSym;
+            char[] usedsymbols = new char[26];
+            int pos = 0;
+            int len = session.getAnswerLength();
+            while (!session.attemptsOverflow() && !isEnd) {
+                isSym = false;
+                System.out.print("> Guess a letter:\n");
+                System.out.print("< ");
+                symbol = correctSymbol(scanner, usedsymbols, pos);
+                System.out.print("\n");
+                if (!symbol.equals("giveup")) {
+                    ++pos;
+                    for (int i = 0; i < len; ++i) {
+                        if (symbol.charAt(0) == session.getAnswer().charAt(i)) {
+                            session.setUserAnswer(symbol.charAt(0), i);
+                            isSym = true;
+                        }
+                    }
+                    if (isSym) {
+                        System.out.print("> Hit!\n");
+                        System.out.print(">\n");
+                        System.out.print("> The word: " + Arrays.toString(session.getUserAnswer()) + '\n');
+                        System.out.print(">\n");
+                        if (Arrays.equals(session.getAnswer().toCharArray(), session.getUserAnswer())) {
+                            System.out.print("> You won!\n");
+                            isEnd = true;
+                        }
+                    } else {
+                        session.addAttempt();
+                        System.out.print(
+                            "> Missed, mistake " + session.getAttempts() + " out of " + session.getMaxAttempts() + ".\n");
+                        System.out.print(">\n");
+                        System.out.print("> The word: " + Arrays.toString(session.getUserAnswer()) + '\n');
+                        System.out.print(">\n");
+                        if (session.getAttempts() == session.getMaxAttempts()) {
+                            System.out.print(">\n");
+                            System.out.print("> You lost!\n");
+                            isEnd = true;
+                        }
+                    }
+                } else {
                     isEnd = true;
                 }
             }
         }
-        in.close();
+        else {
+            System.out.print("Загаданное слово имеет некорректную длину\n");
+        }
     }
 
-    /*    private GuessResult tryGuess(Session session, String input) {
-        }
-
-        private void printState(GuessResult guess) {
-        }*/
     public static void main(String[] args) {
-        Game();
+        ConsoleHangman ConsoleHangMan = new ConsoleHangman("h\ne\nv\ne\na\nn");
+        ConsoleHangMan.Game("obstacle");
     }
 }
