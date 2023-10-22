@@ -1,13 +1,8 @@
 package edu.project1;
 
-import java.util.Random;
 import java.util.Arrays;
+import java.util.Random;
 import org.jetbrains.annotations.NotNull;
-
-@SuppressWarnings("MagicNumber")
-interface Dictionary {
-    @NotNull String randomWord();
-}
 
 class Session implements Dictionary {
     private final String answer;
@@ -15,7 +10,7 @@ class Session implements Dictionary {
     private final int maxAttempts;
     private int attempts;
 
-    final static int SIX = 6;
+    final static int THREE = 3;
 
     Session(String answer, int maxAttempts) {
         this.answer = answer;
@@ -27,12 +22,9 @@ class Session implements Dictionary {
 
     @NotNull public String randomWord() {
         Random random = new Random();
-        String result = switch (random.nextInt(SIX)) {
+        String result = switch (random.nextInt(THREE)) {
             case 0 -> "hello";
             case 1 -> "obstacle";
-            case 2 -> "decision";
-            case 3 -> "elephant";
-            case 4 -> "majesty";
             default -> "predicament";
         };
         return result;

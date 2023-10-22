@@ -7,6 +7,7 @@ public class CorrectionOfSymbol {
     private CorrectionOfSymbol() {
 
     }
+
     public static boolean isUsedSymbol(char symbol, char[] usedsymbols, int pos) {
         boolean result = false;
         for (int i = 0; i < pos; ++i) {
