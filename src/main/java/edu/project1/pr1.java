@@ -102,13 +102,25 @@ class Session implements Dictionary {
 class ConsoleHangman {
     private final static Logger LOGGER = LogManager.getLogger();
 
-    public static boolean checkSymbol(String symbol) {
-        return symbol.length() == 1 && symbol.charAt(0) >= 'a' && symbol.charAt(0) <= 'z';
+    public static boolean isUsedSymbol(char symbol, char[] usedsymbols, int pos) {
+        boolean result = false;
+        for (int i = 0; i < pos && !result; ++i) {
+            if (symbol == usedsymbols[i]) {
+                result = true;
+            }
+        }
+        if (!result)
+            usedsymbols[pos] = symbol;
+        return result;
+    }
+    public static boolean checkSymbol(String symbol, char[] usedsymbols, int pos) {
+        return symbol.length() == 1 && symbol.charAt(0) >= 'a'
+            && symbol.charAt(0) <= 'z' && !isUsedSymbol(symbol.charAt(0), usedsymbols, pos);
     }
 
-    public static char correctSymbol(Scanner in) {
+    public static char correctSymbol(Scanner in, char[] usedsymbols, int pos) {
         String symbol = in.nextLine();
-        while (!checkSymbol(symbol)) {
+        while (!checkSymbol(symbol, usedsymbols, pos)) {
             LOGGER.info("> Guess a letter:");
             LOGGER.info("< ");
             symbol = in.nextLine();
@@ -122,12 +134,15 @@ class ConsoleHangman {
         boolean isSym;
         Session session = new Session(5);
         char symbol;
+        char[] usedsymbols = new char[26];
+        int pos = 0;
         int len = session.getAnswerLength();
         while (!session.attemptsOverflow() && !isEnd) {
             isSym = false;
             LOGGER.info("> Guess a letter:");
             LOGGER.info("< ");
-            symbol = correctSymbol(in);
+            symbol = correctSymbol(in, usedsymbols, pos);
+            ++pos;
             for (int i = 0; i < len; ++i) {
                 if (symbol == session.getAnswer().charAt(i)) {
                     session.setUserAnswer(symbol, i);
