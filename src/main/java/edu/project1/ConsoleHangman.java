@@ -74,8 +74,8 @@ public class ConsoleHangman {
 
     public static void main(String[] args) {
         ConsoleHangman consoleHangMan = new ConsoleHangman();
-        consoleHangMan.game("obstacle");
-/*        ConsoleHangman consoleHangMan = new ConsoleHangman("h\ne\nv\ne\na\nn\nk\nx\nb");
+        consoleHangMan.game(Dictionary.randomWord());
+ /*       ConsoleHangman consoleHangMan = new ConsoleHangman("h\ne\nv\ne\na\nn\nk\nx\nb");
         consoleHangMan.game("obstacle");*/
     }
 }

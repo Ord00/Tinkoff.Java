@@ -1,16 +1,12 @@
 package edu.project1;
 
 import java.util.Arrays;
-import java.util.Random;
-import org.jetbrains.annotations.NotNull;
 
-class Session implements Dictionary {
+class Session {
     private final String answer;
     private final char[] userAnswer;
     private final int maxAttempts;
     private int attempts;
-
-    final static int THREE = 3;
 
     Session(String answer, int maxAttempts) {
         this.answer = answer;
@@ -18,16 +14,6 @@ class Session implements Dictionary {
         Arrays.fill(userAnswer, '*');
         this.maxAttempts = maxAttempts;
         this.attempts = 0;
-    }
-
-    @NotNull public String randomWord() {
-        Random random = new Random();
-        String result = switch (random.nextInt(THREE)) {
-            case 0 -> "hello";
-            case 1 -> "obstacle";
-            default -> "predicament";
-        };
-        return result;
     }
 
     boolean attemptsOverflow() {
