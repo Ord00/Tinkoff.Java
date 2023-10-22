@@ -3,15 +3,15 @@ package edu.project1;
 import java.util.Arrays;
 import java.util.Scanner;
 
-@SuppressWarnings({"RegexpSinglelineJava", "uncommentedmain"})
-class ConsoleHangman {
+@SuppressWarnings({"RegexpSinglelineJava", "uncommentedmain", "HideUtilityClassConstructor"})
+public class ConsoleHangman {
     final static int TWENTYSIX = 26;
     final static int FIVE = 5;
     final static String WORD = "> The word: ";
     final static String N = ">\n";
     private static Scanner scanner;
 
-    ConsoleHangman() {
+    private ConsoleHangman() {
         scanner = new Scanner(System.in);
     }
 
