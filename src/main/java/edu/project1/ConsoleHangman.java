@@ -3,10 +3,12 @@ package edu.project1;
 import java.util.Arrays;
 import java.util.Scanner;
 
-@SuppressWarnings("RegexpSinglelineJava, UncommentedMain")
+@SuppressWarnings({"RegexpSinglelineJava", "uncommentedmain"})
 class ConsoleHangman {
     final static int TWENTYSIX = 26;
     final static int FIVE = 5;
+    final static String WORD = "> The word: ";
+    final static String N = ">\n";
     private static Scanner scanner;
 
     ConsoleHangman() {
@@ -42,9 +44,9 @@ class ConsoleHangman {
                     }
                     if (isSym) {
                         System.out.print("> Hit!\n");
-                        System.out.print(">\n");
-                        System.out.print("> The word: " + Arrays.toString(session.getUserAnswer()) + '\n');
-                        System.out.print(">\n");
+                        System.out.print(N);
+                        System.out.print(WORD + Arrays.toString(session.getUserAnswer()) + '\n');
+                        System.out.print(N);
                         if (Arrays.equals(session.getAnswer().toCharArray(), session.getUserAnswer())) {
                             System.out.print("> You won!\n");
                             isEnd = true;
@@ -54,11 +56,11 @@ class ConsoleHangman {
                         System.out.print(
                             "> Missed, mistake " + session.getAttempts() + " out of " + session.getMaxAttempts()
                                 + ".\n");
-                        System.out.print(">\n");
-                        System.out.print("> The word: " + Arrays.toString(session.getUserAnswer()) + '\n');
-                        System.out.print(">\n");
+                        System.out.print(N);
+                        System.out.print(WORD + Arrays.toString(session.getUserAnswer()) + '\n');
+                        System.out.print(N);
                         if (session.getAttempts() == session.getMaxAttempts()) {
-                            System.out.print(">\n");
+                            System.out.print(N);
                             System.out.print("> You lost!\n");
                             isEnd = true;
                         }
