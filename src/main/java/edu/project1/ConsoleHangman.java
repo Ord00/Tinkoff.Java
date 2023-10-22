@@ -33,40 +33,38 @@ class ConsoleHangman {
                 System.out.print("> Guess a letter:\n");
                 System.out.print("< ");
                 symbol = CorrectionOfSymbol.correctSymbol(scanner, usedsymbols, pos);
-                System.out.print("\n");
-                if (!symbol.equals("giveup")) {
-                    ++pos;
-                    for (int i = 0; i < len; ++i) {
-                        if (symbol.charAt(0) == session.getAnswer().charAt(i)) {
-                            session.setUserAnswer(symbol.charAt(0), i);
-                            isSym = true;
-                        }
+                if (symbol.equals("giveup")) {
+                    break;
+                }
+                ++pos;
+                for (int i = 0; i < len; ++i) {
+                    if (symbol.charAt(0) == session.getAnswer().charAt(i)) {
+                        session.setUserAnswer(symbol.charAt(0), i);
+                        isSym = true;
                     }
-                    if (isSym) {
-                        System.out.print("> Hit!\n");
-                        System.out.print(N);
-                        System.out.print(WORD + Arrays.toString(session.getUserAnswer()) + '\n');
-                        System.out.print(N);
-                        if (Arrays.equals(session.getAnswer().toCharArray(), session.getUserAnswer())) {
-                            System.out.print("> You won!\n");
-                            isEnd = true;
-                        }
-                    } else {
-                        session.addAttempt();
-                        System.out.print(
-                            "> Missed, mistake " + session.getAttempts() + " out of " + session.getMaxAttempts()
-                                + ".\n");
-                        System.out.print(N);
-                        System.out.print(WORD + Arrays.toString(session.getUserAnswer()) + '\n');
-                        System.out.print(N);
-                        if (session.getAttempts() == session.getMaxAttempts()) {
-                            System.out.print(N);
-                            System.out.print("> You lost!\n");
-                            isEnd = true;
-                        }
+                }
+                if (isSym) {
+                    System.out.print("> Hit!\n");
+                    System.out.print(N);
+                    System.out.print(WORD + Arrays.toString(session.getUserAnswer()) + '\n');
+                    System.out.print(N);
+                    if (Arrays.equals(session.getAnswer().toCharArray(), session.getUserAnswer())) {
+                        System.out.print("> You won!\n");
+                        isEnd = true;
                     }
                 } else {
-                    isEnd = true;
+                    session.addAttempt();
+                    System.out.print(
+                        "> Missed, mistake " + session.getAttempts() + " out of " + session.getMaxAttempts()
+                            + ".\n");
+                    System.out.print(N);
+                    System.out.print(WORD + Arrays.toString(session.getUserAnswer()) + '\n');
+                    System.out.print(N);
+                    if (session.getAttempts() == session.getMaxAttempts()) {
+                        System.out.print(N);
+                        System.out.print("> You lost!\n");
+                        isEnd = true;
+                    }
                 }
             }
         } else {
@@ -75,7 +73,7 @@ class ConsoleHangman {
     }
 
     public static void main(String[] args) {
-        ConsoleHangman consoleHangMan = new ConsoleHangman("h\ne\nv\ne\na\nn");
+        ConsoleHangman consoleHangMan = new ConsoleHangman();
         consoleHangMan.game("obstacle");
     }
 }
