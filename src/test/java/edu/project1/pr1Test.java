@@ -43,7 +43,7 @@ public class pr1Test {
     }
 
     @Test
-    @DisplayName("Проверка, что состояние игры корректно изменяется при не угадывании")
+    @DisplayName("Проверка, что состояние игры корректно изменяется при неугадывании №1")
     void test3() {
         String consoleOutput;
         PrintStream originalOut = System.out;
@@ -62,8 +62,29 @@ public class pr1Test {
     }
 
     @Test
-    @DisplayName("Проверка, что состояние игры корректно изменяется при угадывании")
+    @DisplayName("Проверка, что состояние игры корректно изменяется при неугадывании №2")
     void test4() {
+        String consoleOutput;
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream(100);
+        PrintStream capture = new PrintStream(outputStream);
+        System.setOut(capture);
+
+        ConsoleHangman ConsoleHangMan = new ConsoleHangman("e\nx");
+        ConsoleHangMan.game("heaven");
+
+        capture.flush();
+        consoleOutput = outputStream.toString();
+
+        assertEquals(
+            "[*, e, *, *, e, *]->[*, e, *, *, e, *]",
+            consoleOutput.substring(42, 60) + "->" + consoleOutput.substring(128, 146)
+        );
+    }
+
+    @Test
+    @DisplayName("Проверка, что состояние игры корректно изменяется при угадывании №1")
+    void test5() {
         String consoleOutput;
         PrintStream originalOut = System.out;
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream(100);
@@ -79,9 +100,29 @@ public class pr1Test {
     }
 
     @Test
+    @DisplayName("Проверка, что состояние игры корректно изменяется при угадывании №2")
+    void test6() {
+        String consoleOutput;
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream(100);
+        PrintStream capture = new PrintStream(outputStream);
+        System.setOut(capture);
+
+        ConsoleHangman ConsoleHangMan = new ConsoleHangman("l\ne");
+        ConsoleHangMan.game("employee");
+
+        capture.flush();
+        consoleOutput = outputStream.toString();
+        assertEquals(
+            "[*, *, *, l, *, *, *, *]->[e, *, *, l, *, *, e, e]",
+            consoleOutput.substring(42, 66) + "->" + consoleOutput.substring(111, 135)
+        );
+    }
+
+    @Test
     @DisplayName("Проверка, что при отгадывании ввод строки длиной больше чем 1 (опечатка) " +
         "приводит к повторному вводу, без изменения состояния")
-    void test5() {
+    void test7() {
         String consoleOutput;
         PrintStream originalOut = System.out;
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream(100);
