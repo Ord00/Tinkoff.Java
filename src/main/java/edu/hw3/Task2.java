@@ -3,6 +3,7 @@ package edu.hw3;
 import java.util.ArrayDeque;
 import java.util.Scanner;
 
+@SuppressWarnings({"RegexpSinglelineJava", "uncommentedmain"})
 public class Task2 {
     private Task2() {
 
@@ -27,7 +28,7 @@ public class Task2 {
         return result;
     }
 
-    public static String clasterize(String source) {
+    public static String clusterize(String source) {
         String result = "[";
         if (checkSource(source)) {
             String cluster;
@@ -68,7 +69,7 @@ public class Task2 {
         Scanner in = new Scanner(System.in);
         System.out.print("Введите строку: ");
         source = in.nextLine();
-        String result = clasterize(source);
+        String result = clusterize(source);
         System.out.println("Сгруппированная строка: " + result);
     }
 }
