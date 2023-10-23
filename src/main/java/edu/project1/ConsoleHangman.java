@@ -33,7 +33,7 @@ public class ConsoleHangman {
                 System.out.print("> Guess a letter:\n");
                 System.out.print("< ");
                 symbol = CorrectionOfSymbol.correctSymbol(scanner, usedsymbols, pos);
-                if (symbol.equals("giveup")) {
+                if (symbol == null || symbol.equals("giveup")) {
                     break;
                 }
                 ++pos;
@@ -72,9 +72,9 @@ public class ConsoleHangman {
     }
 
     public static void main(String[] args) {
-        ConsoleHangman consoleHangMan = new ConsoleHangman();
-        consoleHangMan.game(Dictionary.randomWord());
-/*        ConsoleHangman consoleHangMan = new ConsoleHangman("h\ne\nv\ne\na\nn\nk\nx\nb");
-        consoleHangMan.game("obstacle");*/
+/*        ConsoleHangman consoleHangMan = new ConsoleHangman();
+        consoleHangMan.game(Dictionary.randomWord());*/
+        ConsoleHangman consoleHangMan = new ConsoleHangman("r");
+        consoleHangMan.game("obstacle");
     }
 }

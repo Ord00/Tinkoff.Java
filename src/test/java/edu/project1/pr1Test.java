@@ -51,14 +51,14 @@ public class pr1Test {
         PrintStream capture = new PrintStream(outputStream);
         System.setOut(capture);
 
-        ConsoleHangman ConsoleHangMan = new ConsoleHangman("r\ne\nc\nt\na\nn\ng\nl\ne\nx\nm");
+        ConsoleHangman ConsoleHangMan = new ConsoleHangman("r");
         ConsoleHangMan.game("obstacle");
 
         capture.flush();
         consoleOutput = outputStream.toString();
-        String s = "Missed, mistake 1 out of 5.";
-        int index = consoleOutput.indexOf("Missed, mistake 1 out of 5.");
-        assertEquals("Missed, mistake 1 out of 5.", consoleOutput.substring(index, index + s.length()));
+
+        assertEquals("> Missed, mistake 1 out of 5.\n"
+            + ">\n" + "> The word: [*, *, *, *, *, *, *, *]", consoleOutput.substring(21, 89));
     }
 
     @Test
@@ -70,14 +70,12 @@ public class pr1Test {
         PrintStream capture = new PrintStream(outputStream);
         System.setOut(capture);
 
-        ConsoleHangman ConsoleHangMan = new ConsoleHangman("r\ne\nc\nt\na\nn\ng\nl\ne\nx\nm");
+        ConsoleHangman ConsoleHangMan = new ConsoleHangman("c");
         ConsoleHangMan.game("obstacle");
 
         capture.flush();
         consoleOutput = outputStream.toString();
-        String s = "Hit!";
-        int index = consoleOutput.indexOf("Hit!");
-        assertEquals("Hit!", consoleOutput.substring(index, index + s.length()));
+        assertEquals("> Hit!\n" + ">\n" + "> The word: [*, *, *, *, *, c, *, *]", consoleOutput.substring(21, 66));
     }
 
     @Test
@@ -90,13 +88,12 @@ public class pr1Test {
         PrintStream capture = new PrintStream(outputStream);
         System.setOut(capture);
 
-        ConsoleHangman ConsoleHangMan = new ConsoleHangman("r\ne\ncngk\nt\na\nn\ng\nl\ne\nx\nm");
+        ConsoleHangman ConsoleHangMan = new ConsoleHangman("cngk");
         ConsoleHangMan.game("obstacle");
 
         capture.flush();
         consoleOutput = outputStream.toString();
-        String s = "> Write correct letter!";
-        int index = consoleOutput.indexOf("> Write correct letter!");
-        assertEquals("> Write correct letter!", consoleOutput.substring(index, index + s.length()));
+
+        assertEquals("> Write correct letter!", consoleOutput.substring(21, 44));
     }
 }

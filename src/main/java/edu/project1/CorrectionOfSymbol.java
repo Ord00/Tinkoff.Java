@@ -1,5 +1,6 @@
 package edu.project1;
 
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 @SuppressWarnings("RegexpSinglelineJava")
@@ -23,17 +24,26 @@ public class CorrectionOfSymbol {
     }
 
     public static boolean checkSymbol(String symbol, char[] usedsymbols, int pos) {
-        return symbol.equals("giveup") || symbol.length() == 1 && symbol.charAt(0) >= 'a'
+        return symbol == null || symbol.equals("giveup") || symbol.length() == 1 && symbol.charAt(0) >= 'a'
             && symbol.charAt(0) <= 'z' && !isUsedSymbol(symbol.charAt(0), usedsymbols, pos);
     }
 
     public static String correctSymbol(Scanner in, char[] usedsymbols, int pos) {
-        String symbol = in.nextLine();
+        String symbol;
+        try {
+            symbol = in.nextLine();
+        } catch (NoSuchElementException e) {
+            symbol = null;
+        }
         while (!checkSymbol(symbol, usedsymbols, pos)) {
             System.out.print("\n> Write correct letter!");
             System.out.print("\n> Guess a letter:\n");
             System.out.print("< ");
-            symbol = in.nextLine();
+            try {
+                symbol = in.nextLine();
+            } catch (NoSuchElementException e) {
+                symbol = null;
+            }
         }
         return symbol;
     }
