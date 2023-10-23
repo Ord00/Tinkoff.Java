@@ -19,11 +19,17 @@ public class Task2 {
                 ++cntLeftBr;
             } else if (source.charAt(i) == ')') {
                 ++cntRightBr;
+            } else {
+                result = false;
+                break;
             }
             if (cntLeftBr - cntRightBr < 0) {
                 result = false;
                 break;
             }
+        }
+        if (cntLeftBr - cntRightBr != 0) {
+            result = false;
         }
         return result;
     }
@@ -48,10 +54,7 @@ public class Task2 {
                         while (!deque.isEmpty()) {
                             cluster += deque.pollFirst();
                         }
-                        cluster += "\"";
-                        if (i != len - 1) {
-                            cluster += ", ";
-                        }
+                        cluster += "\", ";
                         cntLeftBr = 0;
                         cntRightBr = 0;
                         result += cluster;
@@ -59,6 +62,7 @@ public class Task2 {
                 }
                 ++i;
             }
+            result = result.substring(0, result.length() - 2);
         }
         result += "]";
         return result;

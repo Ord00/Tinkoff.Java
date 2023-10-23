@@ -60,4 +60,12 @@ public class Task2Test {
         String expected = "[]";
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("Проверка неверной строки №4")
+    void test8() {
+        String actual = Task2.clusterize("abcd");
+        String expected = "[]";
+        assertEquals(expected, actual);
+    }
 }
