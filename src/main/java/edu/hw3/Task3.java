@@ -11,16 +11,32 @@ public class Task3 {
 
     }
 
-    public static <T> String freqDict(List<T> list) {
-        HashMap<T, Integer> hashMap = new HashMap<>();
-        for (T i : list) {
-            if (!hashMap.containsKey(i)) {
-                hashMap.put(i, 1);
-            } else {
-                hashMap.put(i, hashMap.get(i) + 1);
+    public static <T> boolean checkList(List<T> list) {
+        boolean result = true;
+        int len = list.size();
+        for (int i = 0; i < len - 1; ++i) {
+            if (!list.get(i).getClass().equals(list.get(i + 1).getClass())) {
+                result = false;
+                break;
             }
         }
-        return hashMapToString(hashMap);
+        return result;
+    }
+
+    public static <T> String freqDict(List<T> list) {
+        if (checkList(list)) {
+            HashMap<T, Integer> hashMap = new HashMap<>();
+            for (T i : list) {
+                if (!hashMap.containsKey(i)) {
+                    hashMap.put(i, 1);
+                } else {
+                    hashMap.put(i, hashMap.get(i) + 1);
+                }
+            }
+            return hashMapToString(hashMap);
+        } else {
+            return "Список содержит некорректные данные!";
+        }
     }
 
     public static <T> String hashMapToString(HashMap<T, Integer> hashMap) {
@@ -28,7 +44,11 @@ public class Task3 {
         for (T i : hashMap.keySet()) {
             String key = i.toString();
             String value = hashMap.get(i).toString();
-            result += key + ": " + value + ", ";
+            if (i instanceof String) {
+                result += "\"" + key + "\"" + ": " + value + ", ";
+            } else {
+                result += key + ": " + value + ", ";
+            }
         }
         return result.substring(0, result.length() - 2) + "}";
     }

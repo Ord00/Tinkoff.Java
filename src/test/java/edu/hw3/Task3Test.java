@@ -12,7 +12,7 @@ public class Task3Test {
     void test1() {
         List<Object> list = Arrays.asList("a", "bb", "a", "bb");
         String actual = Task3.freqDict(list);
-        String expected = "{bb: 2, a: 2}";
+        String expected = "{\"bb\": 2, \"a\": 2}";
         assertEquals(expected, actual);
     }
 
@@ -21,7 +21,7 @@ public class Task3Test {
     void test2() {
         List<Object> list = Arrays.asList("this", "and", "that", "and");
         String actual = Task3.freqDict(list);
-        String expected = "{that: 1, and: 2, this: 1}";
+        String expected = "{\"that\": 1, \"and\": 2, \"this\": 1}";
         assertEquals(expected, actual);
     }
 
@@ -30,7 +30,7 @@ public class Task3Test {
     void test3() {
         List<Object> list = Arrays.asList("код", "код", "код", "bug");
         String actual = Task3.freqDict(list);
-        String expected = "{код: 3, bug: 1}";
+        String expected = "{\"код\": 3, \"bug\": 1}";
         assertEquals(expected, actual);
     }
 
@@ -48,7 +48,16 @@ public class Task3Test {
     void test5() {
         List<Object> list = Arrays.asList("  ", "  ", " ", " ", "  ");
         String actual = Task3.freqDict(list);
-        String expected = "{  : 3,  : 2}";
+        String expected = "{\"  \": 3, \" \": 2}";
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Проверка списка с данными разных типов")
+    void test6() {
+        List<Object> list = Arrays.asList(1, "  ", 2, " ", 'a');
+        String actual = Task3.freqDict(list);
+        String expected = "Список содержит некорректные данные!";
         assertEquals(expected, actual);
     }
 }
