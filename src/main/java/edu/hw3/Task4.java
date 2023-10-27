@@ -2,6 +2,7 @@ package edu.hw3;
 
 import java.util.Scanner;
 
+@SuppressWarnings({"RegexpSinglelineJava", "uncommentedmain", "magicnumber"})
 public class Task4 {
     private Task4() {
 
@@ -15,16 +16,16 @@ public class Task4 {
     private final static Integer THOUSAND = 1000;
 
     private static String letterM(Integer num) {
-        String M = "M";
-        return M.repeat(num);
+        String m = "M";
+        return m.repeat(num);
     }
 
     private static String letterC(Integer num) {
-        if (num.equals(4)) {
+        if (num.equals(FOUR)) {
             return "CD";
         } else if (!num.equals(0) && num < FOUR) {
-            String C = "C";
-            return C.repeat(num);
+            String m = "C";
+            return m.repeat(num);
         } else {
             return "";
         }
@@ -34,8 +35,8 @@ public class Task4 {
         if (num.equals(FOUR)) {
             return "XL";
         } else if (!num.equals(0) && num < FOUR) {
-            String X = "X";
-            return X.repeat(num);
+            String x = "X";
+            return x.repeat(num);
         } else {
             return "";
         }
@@ -77,7 +78,7 @@ public class Task4 {
 
     public static String convertToRoman(Integer num) {
         StringBuilder result = new StringBuilder("\"");
-        if (num > 0) {
+        if (num > 0 && num < FOUR * THOUSAND) {
             Integer thousands1 = num / THOUSAND;
             result.append(letterM(thousands1));
             Integer thousands2 = num % THOUSAND;
