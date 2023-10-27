@@ -46,10 +46,10 @@ public class Task4Test {
     }
 
     @Test
-    @DisplayName("Проверка числа 5439")
+    @DisplayName("Проверка числа, которое превосходит 3999")
     void test6() {
         String actual = Task4.convertToRoman(5439);
-        String expected = "\"MMMMMCDXXXIX\"";
+        String expected = "\"\"";
         assertEquals(expected, actual);
     }
 
