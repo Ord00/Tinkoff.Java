@@ -6,7 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-@SuppressWarnings({"RegexpSinglelineJava", "uncommentedmain"})
+@SuppressWarnings({"RegexpSinglelineJava", "uncommentedmain", "magicnumber"})
 public class Task4 {
     private Task4() {
 
