@@ -11,40 +11,6 @@ public class Task5 {
 
     }
 
-    public static class MyStandartComparator implements Comparator {
-        @Override
-        public int compare(Object o1, Object o2) {
-            String s1 = o1.toString();
-            int delim1 = s1.indexOf(' ');
-            String s2 = o2.toString();
-            int delim2 = s2.indexOf(' ');
-            if (delim1 != -1) {
-                s1 = s1.substring(delim1 + 1);
-            }
-            if (delim2 != -1) {
-                s2 = s2.substring(delim2 + 1);
-            }
-            return s1.compareTo(s2);
-        }
-    }
-
-    public static class MyReverseComparator implements Comparator {
-        @Override
-        public int compare(Object o1, Object o2) {
-            String s1 = o1.toString();
-            int delim1 = s1.indexOf(' ');
-            String s2 = o2.toString();
-            int delim2 = s2.indexOf(' ');
-            if (delim1 != -1) {
-                s1 = s1.substring(delim1 + 1);
-            }
-            if (delim2 != -1) {
-                s2 = s2.substring(delim2 + 1);
-            }
-            return s2.compareTo(s1);
-        }
-    }
-
     public static ArrayList<String> parseContacts(ArrayList<String> source, String sortType) {
         ArrayList<String> result = source;
         if (result != null) {
@@ -77,5 +43,39 @@ public class Task5 {
         System.out.print("Введите тип сортировки (по возрастанию/убыванию (ASC/DESC)): ");
         String sortType = in.nextLine();
         System.out.println("Отсортированный массив: " + parseContacts(source, sortType));
+    }
+
+    public static class MyStandartComparator implements Comparator {
+        @Override
+        public int compare(Object o1, Object o2) {
+            String s1 = o1.toString();
+            int delim1 = s1.indexOf(' ');
+            String s2 = o2.toString();
+            int delim2 = s2.indexOf(' ');
+            if (delim1 != -1) {
+                s1 = s1.substring(delim1 + 1);
+            }
+            if (delim2 != -1) {
+                s2 = s2.substring(delim2 + 1);
+            }
+            return s1.compareTo(s2);
+        }
+    }
+
+    public static class MyReverseComparator implements Comparator {
+        @Override
+        public int compare(Object o1, Object o2) {
+            String s1 = o1.toString();
+            int delim1 = s1.indexOf(' ');
+            String s2 = o2.toString();
+            int delim2 = s2.indexOf(' ');
+            if (delim1 != -1) {
+                s1 = s1.substring(delim1 + 1);
+            }
+            if (delim2 != -1) {
+                s2 = s2.substring(delim2 + 1);
+            }
+            return s2.compareTo(s1);
+        }
     }
 }
