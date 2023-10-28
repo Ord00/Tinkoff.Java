@@ -54,7 +54,7 @@ public class Task6Test {
     }
 
     @Test
-    @DisplayName("Проверка удаления из пустой очереди")
+    @DisplayName("Проверка удаления несуществующего элемента")
     void checkNotExistedStock() {
         StockMarket stockMarket = new Market();
         stockMarket.add(new Stock("TatNeft", 87.23));
