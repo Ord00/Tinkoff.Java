@@ -1,6 +1,5 @@
 package edu.hw3;
 
-import java.util.ArrayDeque;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -33,13 +32,14 @@ public class Task4 {
         }};
         String key;
         Integer value;
-        while (num > 0 && num < MAX) {
+        Integer x = num;
+        while (x > 0 && x < MAX) {
             for (Map.Entry<String, Integer> entry : hashMap.entrySet()) {
                 key = entry.getKey();
                 value = entry.getValue();
-                while (num >= value) {
+                while (x >= value) {
                     result += key;
-                    num -= value;
+                    x -= value;
                 }
             }
         }
