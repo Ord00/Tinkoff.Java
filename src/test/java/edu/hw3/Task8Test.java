@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class Task8Test {
     @Test
@@ -41,5 +42,11 @@ public class Task8Test {
         String actual = iterator.toString();
         String expected = "[]";
         assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Проверка итераторатора на \"null\" ")
+    void checkNull() {
+        assertThrows(NullPointerException.class, () -> new BackwardIterator(NullPointerException.class, null));
     }
 }
