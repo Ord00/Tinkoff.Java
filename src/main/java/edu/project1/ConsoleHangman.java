@@ -11,7 +11,7 @@ public class ConsoleHangman {
     final static String N = ">\n";
     private static Scanner scanner;
 
-    private ConsoleHangman() {
+    ConsoleHangman() {
         scanner = new Scanner(System.in);
     }
 
@@ -69,12 +69,5 @@ public class ConsoleHangman {
         } else {
             System.out.print("Загаданное слово имеет некорректную длину\n");
         }
-    }
-
-    public static void main(String[] args) {
-/*        ConsoleHangman consoleHangMan = new ConsoleHangman();
-        consoleHangMan.game(Dictionary.randomWord());*/
-        ConsoleHangman consoleHangMan = new ConsoleHangman("r");
-        consoleHangMan.game("obstacle");
     }
 }
