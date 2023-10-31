@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class Task5Test {
     @Test
     @DisplayName("Проверка вывода самого длинного имени с заполненным списком")
-    void СorrectList() {
+    void CorrectList() {
         ArrayList<Animal> list = new ArrayList<>();
         list.add(new Animal("Thunder", Animal.Type.DOG, Animal.Sex.M, 6, 35, 10, true));
         list.add(new Animal("Maverlous", Animal.Type.FISH, Animal.Sex.F, 2, 3, 21, false));

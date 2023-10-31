@@ -9,13 +9,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class Task1Test {
     @Test
     @DisplayName("Проверка сортировки по росту с заполненным списком")
-    void СorrectList() {
+    void CorrectList() {
         ArrayList<Animal> list = new ArrayList<>();
         list.add(new Animal("Thunder", Animal.Type.DOG, Animal.Sex.M, 6, 35, 10, true));
         list.add(new Animal("Eagle", Animal.Type.BIRD, Animal.Sex.M, 10, 7, 9, false));
         list.add(new Animal("Mr. Cat", Animal.Type.CAT, Animal.Sex.M, 1, 89, 17, true));
+        list.add(new Animal("Margin", Animal.Type.CAT, Animal.Sex.F, 3, 57, 3, true));
         String actual = Task1.sortByHeight(list).toString();
-        String expected = "[Eagle, Thunder, Mr. Cat]";
+        String expected = "[Eagle, Thunder, Margin, Mr. Cat]";
         assertEquals(expected, actual);
     }
 

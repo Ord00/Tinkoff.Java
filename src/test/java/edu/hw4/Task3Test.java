@@ -3,6 +3,8 @@ package edu.hw4;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -16,8 +18,12 @@ public class Task3Test {
         list.add(new Animal("Eagle", Animal.Type.BIRD, Animal.Sex.M, 10, 7, 9, false));
         list.add(new Animal("Mr. Cat", Animal.Type.CAT, Animal.Sex.M, 1, 89, 17, true));
         list.add(new Animal("Maven", Animal.Type.BIRD, Animal.Sex.M, 111, 78, 19, true));
-        String actual = Task3.countAnimalType(list).toString();
-        String expected = "{FISH=1, CAT=1, DOG=1, BIRD=2}";
+        Map<Animal.Type, Long> actual = Task3.countAnimalType(list);
+        Map<Animal.Type, Long> expected = new HashMap<>();
+        expected.put(Animal.Type.DOG, 1L);
+        expected.put(Animal.Type.FISH, 1L);
+        expected.put(Animal.Type.BIRD, 2L);
+        expected.put(Animal.Type.CAT, 1L);
         assertEquals(expected, actual);
     }
 
