@@ -1,0 +1,16 @@
+package edu.hw4;
+
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class Task1 {
+    private Task1() {
+
+    }
+
+    static List<Animal> sortByHeight(List<Animal> animalList) {
+        return animalList.stream().sorted(Comparator.comparingInt(Animal::height))
+            .collect(Collectors.toList());
+    }
+}

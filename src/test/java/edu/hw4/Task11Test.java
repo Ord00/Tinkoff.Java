@@ -1,0 +1,38 @@
+package edu.hw4;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class Task11Test {
+    @Test
+    @DisplayName("Проверка списка животных, которые могут укусить и рост которых превышает 100 см, в корректном списке")
+    void CorrectList() {
+        ArrayList<Animal> list = new ArrayList<>();
+        list.add(new Animal("Thunder", Animal.Type.DOG, Animal.Sex.M, 4, 235, 10, true));
+        list.add(new Animal("Majesty", Animal.Type.FISH, Animal.Sex.F, 2, 3, 21, false));
+        list.add(new Animal("Eagle", Animal.Type.BIRD, Animal.Sex.M, 10, 7, 9, false));
+        list.add(new Animal("Mr. Cat", Animal.Type.CAT, Animal.Sex.M, 4, 189, 17, true));
+        list.add(new Animal("Maven", Animal.Type.BIRD, Animal.Sex.M, 111, 78, 19, true));
+        String actual = Task11.bitesAndHeightMoreThan100(list).toString();
+        String expected = "[Thunder, Mr. Cat]";
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Проверка списка животных, которые могут укусить и рост которых превышает 100 см, на 'null' значении")
+    void NullList() {
+        assertThrows(NullPointerException.class, () -> Task11.bitesAndHeightMoreThan100(null)).toString();
+    }
+
+    @Test
+    @DisplayName("Проверка списка животных, которые могут укусить и рост которых превышает 100 см, на пустом списке")
+    void EmptyList() {
+        ArrayList<Animal> list = new ArrayList<>();
+        String actual = Task11.bitesAndHeightMoreThan100(list).toString();
+        String expected = "[]";
+        assertEquals(expected, actual);
+    }
+}
