@@ -7,10 +7,11 @@ public class Task16 {
     private Task16() {
 
     }
+
     public static List<Animal> sortTypeThenSexThenName(List<Animal> animalList) {
-        Comparator<Animal> animalComparator = Comparator.comparing(Animal::type).
-            thenComparing(Animal::sex).
-            thenComparing(Animal::name);
+        Comparator<Animal> animalComparator = Comparator.comparing(Animal::type)
+            .thenComparing(Animal::sex)
+            .thenComparing(Animal::name);
         return animalList.stream().sorted(animalComparator).toList();
     }
 }
