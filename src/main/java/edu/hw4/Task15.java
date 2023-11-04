@@ -10,6 +10,9 @@ public class Task15 {
     }
 
     public static Map<Animal.Type, Long> bitesAndHeightMoreThan100(List<Animal> animalList, Integer k, Integer l) {
+        if (animalList.isEmpty() || k > l) {
+            return null;
+        }
         return animalList.stream()
             .filter(i -> i.age() >= k && i.age() <= l)
             .collect(Collectors.groupingBy(Animal::type, Collectors.summingLong(Animal::weight)));

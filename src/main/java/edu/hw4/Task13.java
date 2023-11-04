@@ -6,9 +6,11 @@ public class Task13 {
     private Task13() {
 
     }
+
     public static List<Animal> weightMoreHeight(List<Animal> animalList) {
         return animalList.stream().filter(i -> countWordsInString(i.name()) > 2).toList();
     }
+
     private static Integer countWordsInString(String s) {
         Integer result = 0;
         if (!s.isEmpty()) {
